@@ -273,6 +273,10 @@ func FetchGit(baseUrl, baseDir string) error {
 
 						// Find the last reflog entry and extract the obj hash and write that to the ref file
 						logObjs := refLogRegex.FindAllSubmatch(content, -1)
+						if len(logObjs) == 0 {
+							log.Error().Str("dir", baseDir).Str("ref", refName).Msg("reflog is empty")
+							return nil
+						}
 						lastEntryObj := logObjs[len(logObjs)-1][1]
 
 						if err := utils.CreateParentFolders(filePath); err != nil {
