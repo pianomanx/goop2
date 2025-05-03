@@ -45,15 +45,15 @@ var (
 		".git/index",
 		".git/info/exclude",
 		".git/objects/info/packs",
-		".git/objects/info/alternates",                       // TODO: parse and process
-		".git/objects/info/http-alternates",                  // TODO: parse and process
+		// ".git/objects/info/alternates",                       // TODO: parse and process (disabled until then)
+		// ".git/objects/info/http-alternates",                  // TODO: parse and process (disabled until then)
 		".git/objects/info/commit-graph",                     // TODO: parse for object hashes
 		".git/objects/info/commit-graphs/commit-graph-chain", // TODO: read file and fetch mentioned graph files too, then parse those for object hashes
-		".git/info/grafts",                                   // TODO: parse and process
-		".git/info/attributes",                               // TODO: can lfs filters be in here?
-		".git/info/sparse-checkout",                          // TODO: parse and process
-		".git/objects/loose-object-idx",                      // TODO: parse and process
-		".git/objects/pack/multi-pack-index",                 // TODO: parse and process and fetch referenced packs (unless i'm missunderstanding this)
+		// ".git/info/grafts",                                   // TODO: parse and process (disabled until then)
+		".git/info/attributes",          // TODO: can lfs filters be in here?
+		".git/info/sparse-checkout",     // TODO: parse and process
+		".git/objects/loose-object-idx", // TODO: parse and process
+		// ".git/objects/pack/multi-pack-index", // TODO: parse and process and fetch referenced packs (unless i'm missunderstanding this) (disabled until then)
 	}
 	commonRefs = []string{
 		".git/FETCH_HEAD",

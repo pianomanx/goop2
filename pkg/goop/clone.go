@@ -222,15 +222,15 @@ func FetchGit(baseUrl, baseDir string) error {
 	files := []string{
 		utils.Url(baseDir, ".git/packed-refs"),
 		utils.Url(baseDir, ".git/info/refs"),
-		utils.Url(baseDir, ".git/info/grafts"),
+		// utils.Url(baseDir, ".git/info/grafts"),
 		// utils.Url(baseDir, ".git/info/sparse-checkout"), // TODO: ?
 		utils.Url(baseDir, ".git/FETCH_HEAD"),
 		utils.Url(baseDir, ".git/ORIG_HEAD"),
 		utils.Url(baseDir, ".git/HEAD"),
 		utils.Url(baseDir, ".git/objects/loose-object-idx"), // TODO: is this even a text file?
 		utils.Url(baseDir, ".git/objects/info/commit-graphs/commit-graph-chain"),
-		utils.Url(baseDir, ".git/objects/info/alternates"),
-		utils.Url(baseDir, ".git/objects/info/http-alternates"),
+		// utils.Url(baseDir, ".git/objects/info/alternates"),
+		// utils.Url(baseDir, ".git/objects/info/http-alternates"),
 	}
 
 	// TODO : fix if-else hell in the entire object hash collection code (and get rid of bad early returns)
@@ -330,7 +330,6 @@ func FetchGit(baseUrl, baseDir string) error {
 		encObj, err := objStorage.EncodedObject(plumbing.AnyObject, hash)
 		if err != nil {
 			return err
-
 		}
 		decObj, err := object.DecodeObject(objStorage, encObj)
 		if err != nil {
@@ -355,6 +354,9 @@ func FetchGit(baseUrl, baseDir string) error {
 		f, err := os.Open(commitGraphList)
 		if err != nil {
 			log.Error().Str("dir", baseDir).Err(err).Msg("failed to open commit graph chain")
+			if err := os.Remove(commitGraphList); err != nil {
+				log.Error().Str("file", commitGraphList).Err(err).Msg("failed to delete")
+			}
 		} else {
 			scanner := bufio.NewScanner(f)
 			for scanner.Scan() {
@@ -608,6 +610,9 @@ func parseGraphFile(baseDir, graphFile string, objs map[string]bool) {
 		graph, err := commitgraph.OpenFileIndex(f)
 		if err != nil {
 			log.Error().Str("dir", baseDir).Str("graph", graphFile).Err(err).Msg("failed to decode commit graph")
+			if err := os.Remove(graphFile); err != nil {
+				log.Error().Str("file", graphFile).Err(err).Msg("failed to delete")
+			}
 			return
 		}
 		for _, hash := range graph.Hashes() {

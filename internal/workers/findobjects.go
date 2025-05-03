@@ -102,11 +102,17 @@ func FindObjectsWorker(jt *jobtracker.JobTracker, obj string, context jobtracker
 	encObj, err := c.Storage.EncodedObject(plumbing.AnyObject, plumbing.NewHash(obj))
 	if err != nil {
 		log.Error().Str("obj", obj).Err(err).Msg("couldn't read object")
+		if err := os.Remove(fullPath); err != nil {
+			log.Error().Str("file", fullPath).Err(err).Msg("failed to delete")
+		}
 		return
 	}
 	decObj, err := object.DecodeObject(c.Storage, encObj)
 	if err != nil {
 		log.Error().Str("obj", obj).Err(err).Msg("couldn't decode object")
+		if err := os.Remove(fullPath); err != nil {
+			log.Error().Str("file", fullPath).Err(err).Msg("failed to delete")
+		}
 		return
 	}
 	referencedHashes := utils.GetReferencedHashes(decObj)
