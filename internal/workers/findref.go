@@ -43,6 +43,9 @@ func FindRefWorker(jt *jobtracker.JobTracker, path string, context jobtracker.Co
 	checkedRefsMutex.Unlock()
 
 	targetFile := utils.Url(c.BaseDir, path)
+	if path == ".git/config" || path == ".git/config.worktree" {
+		targetFile = utils.Url(c.BaseDir, path+".goop")
+	}
 	if utils.Exists(targetFile) {
 		log.Info().Str("file", targetFile).Msg("already fetched, skipping redownload")
 		content, err := ioutil.ReadFile(targetFile)
