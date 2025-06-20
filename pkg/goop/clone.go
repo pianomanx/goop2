@@ -13,9 +13,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/deletescape/goop/internal/utils"
-	"github.com/deletescape/goop/internal/workers"
-	"github.com/deletescape/jobtracker"
+	"github.com/nyancrimew/goop/internal/utils"
+	"github.com/nyancrimew/goop/internal/workers"
+	"github.com/nyancrimew/jobtracker"
 	"github.com/go-git/go-billy/v5/osfs"
 	"github.com/go-git/go-git/v5/plumbing"
 	"github.com/go-git/go-git/v5/plumbing/cache"
