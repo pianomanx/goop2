@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/deletescape/goop/cmd"
+	"github.com/nyancrimew/goop/cmd"
 	"github.com/phuslu/log"
 )
 
