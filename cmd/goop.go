@@ -3,7 +3,7 @@ package cmd
 import (
 	"os"
 
-	"github.com/deletescape/goop/pkg/goop"
+	"github.com/nyancrimew/goop/pkg/goop"
 	"github.com/phuslu/log"
 	"github.com/spf13/cobra"
 )
