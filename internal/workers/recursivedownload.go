@@ -6,8 +6,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/deletescape/goop/internal/utils"
-	"github.com/deletescape/jobtracker"
+	"github.com/nyancrimew/goop/internal/utils"
+	"github.com/nyancrimew/jobtracker"
 	"github.com/phuslu/log"
 	"github.com/valyala/fasthttp"
 )

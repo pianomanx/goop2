@@ -6,8 +6,8 @@ import (
 	"os"
 	"sync"
 
-	"github.com/deletescape/goop/internal/utils"
-	"github.com/deletescape/jobtracker"
+	"github.com/nyancrimew/goop/internal/utils"
+	"github.com/nyancrimew/jobtracker"
 	"github.com/go-git/go-git/v5/plumbing"
 	"github.com/go-git/go-git/v5/plumbing/object"
 	"github.com/go-git/go-git/v5/storage/filesystem"
